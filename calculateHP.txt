@@ -17,20 +17,20 @@
     iferror(
       ifs(
         regexmatch(
-          $A$5,"Barbarian"
+          $A$5,"(?i)Barbarian"
         ),12,regexmatch(
-          $A$5,"Champion|Fighter|Monk|Ranger|Swashbuckler"
+          $A$5,"(?i)Champion|Fighter|Monk|Ranger|Swashbuckler"
         ),10,regexmatch(
-          $A$5,"Alchemist|Bard|Cleric|Druid|Rogue|Investigator|Oracle"
+          $A$5,"(?i)Alchemist|Bard|Cleric|Druid|Rogue|Investigator|Oracle"
         ),8,regexmatch(
-          $A$5,"Sorcerer|Wizard|Witch"
+          $A$5,"(?i)Sorcerer|Wizard|Witch"
         ),6
       )
     )+$K$5+arrayformula(
       if(
         or(
           regexmatch(
-            $I$51:$I$56,"Toughness"
+            $I$51:$I$56,"(?i)Toughness"
           )
         ),1
       )
@@ -38,7 +38,7 @@
       if(
         or(
           regexmatch(
-            $I$42:$I$48,"Mountain's Stoutness"
+            $I$42:$I$48,"(?i)Mountain's Stoutness"
           )
         ),1
       )
