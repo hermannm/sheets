@@ -6,13 +6,13 @@
     if(
       or(
         regexmatch(
-          $A$43:$A$77,"Lifting Belt"
+          $A$43:$A$77,"(?i)Lifting Belt"
         )
       ),6,5
     )+if(
       or(
         regexmatch(
-          $I$59:$I$70,"Hefty Hauler"
+          $I$59:$I$70,"(?i)Hefty Hauler"
         )
       ),2
     )
@@ -27,13 +27,13 @@
     if(
       or(
         regexmatch(
-          $A$43:$A$77,"Lifting Belt"
+          $A$43:$A$77,"(?i)Lifting Belt"
         )
       ),11,10
     )+if(
       or(
         regexmatch(
-          $I$59:$I$70,"Hefty Hauler"
+          $I$59:$I$70,"(?i)Hefty Hauler"
         )
       ),2
     )

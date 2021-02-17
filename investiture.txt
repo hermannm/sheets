@@ -8,7 +8,7 @@
       if(
         or(
           regexmatch(
-            $I$51:$I$56,"Incredible Investiture"
+            $I$51:$I$56,"(?i)Incredible Investiture"
           )
         ),12,10
       )
