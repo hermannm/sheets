@@ -18,7 +18,7 @@
               regexextract(
                 $Q$36:$Q$39,"(?:(?i)"&regexextract(
                   A14," ([A-Za-z ]+)(?:$| )"
-                )&" )(T|E|M|L)(?: |$)"
+                )&" )(T|E|M|L)(?: |,|$)"
               )
             ),1,true
           ),1,1
