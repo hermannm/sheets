@@ -1,0 +1,15 @@
+=if(
+  isblank(
+    $N$3
+  ),,iferror(
+    iferror(
+      vlookup(
+        U3,$I$3:$K$8,3,false
+      ),U3
+    )+iferror(
+      vlookup(
+        V3,$N$5:$O$8,2,false
+      ),0
+    )+W3+10
+  )
+)
