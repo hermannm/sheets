@@ -34,6 +34,14 @@
           )
         ),1
       )
+    )+arrayformula(
+      if(
+        or(
+          regexmatch(
+            $I$42:$I$48,"Mountain's Stoutness"
+          )
+        ),1
+      )
     )
   )*$N$3
 )
