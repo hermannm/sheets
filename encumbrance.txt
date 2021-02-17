@@ -1,0 +1,29 @@
+//encumbered
+=if(
+  isblank(
+    $K$3
+  ),,$K$3+arrayformula(
+    if(
+      or(
+        regexmatch(
+          $I$59:$I$70,"Hefty Hauler"
+        )
+      ),7,5
+    )
+  )
+)
+
+//max
+=if(
+  isblank(
+    $K$3
+  ),,$K$3+arrayformula(
+    if(
+      or(
+        regexmatch(
+          $I$59:$I$70,"Hefty Hauler"
+        )
+      ),12,10
+    )
+  )
+)
