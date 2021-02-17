@@ -1,0 +1,85 @@
+=arrayformula(
+  if(
+    and(
+      isblank(
+        $A$43:$A$77
+      )
+    ),,iferror(
+      sum(
+        if(
+          offset(
+            G43,0,0,iferror(
+              match(
+                "Adventurer's pack",A43:A77,0
+              ),match(
+                "Backpack",A43:A77,0
+              )
+            )-1
+          )="L",0.1,offset(
+            G43,0,0,iferror(
+              match(
+                "Adventurer's pack",A43:A66,0
+              ),match(
+                "Backpack",A43:A66,0
+              )
+            )-1
+          )
+        )*iferror(
+          regexextract(
+            offset(
+              A43,0,0,iferror(
+                match(
+                  "Adventurer's pack",A43:A77,0
+                ),match(
+                  "Backpack",A43:A77,0
+                )
+              )-1
+            ), "\((\d+)\)"
+          ),1
+        )
+      )+max(
+        0,sum(
+          if(
+            indirect(
+              "G"&42+iferror(
+                match(
+                  "Adventurer's pack",A43:A77,0
+                ),match(
+                  "Backpack",A43:A77,0
+                )
+              )
+            ):G77="L",0.1,indirect(
+              "G"&42+iferror(
+                match(
+                  "Adventurer's pack",A43:A77,0
+                ),match(
+                  "Backpack",A43:A77,0
+                )
+              )
+            ):G77
+          )*iferror(
+            regexextract(
+              indirect(
+                "A"&42+iferror(
+                  match(
+                    "Adventurer's pack",A43:A77,0
+                  ),match(
+                    "Backpack",A43:A77,0
+                  )
+                )
+              ):A77, "\((\d+)\)"
+            ),1
+          )
+        )-2
+      ),sum(
+        if(
+          $G$43:$G$77="L",0.1,$G$43:$G$77
+        )*iferror(
+          regexextract(
+            $A$43:$A$77, "\((\d+)\)"
+          ),1
+        )
+      )
+    )
+  )
+)
