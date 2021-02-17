@@ -7,7 +7,7 @@
     )
   ),,if(
     regexmatch(
-      A14,"(?i)finesse|range"
+      A14,"(?i)finesse|range|(?:\(|, )\d+'(?:,|\))"
     ),$K$4,$K$3
   )+iferror(
     vlookup(
