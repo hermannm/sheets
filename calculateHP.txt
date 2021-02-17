@@ -1,0 +1,39 @@
+=if(
+  isblank(
+    $N$3
+  ),,iferror(
+    ifs(
+      regexmatch(
+        $A$3,"(?i)Hold-Scarred Orc"
+      ),12,regexmatch(
+        $A$3,"(?i)Dwarf|Unbreakable Goblin|Orc"
+      ),10,regexmatch(
+        $A$3,"(?i)Gnome|Human|Half-elf|Half-orc|Catfolk"
+      ),8,regexmatch(
+        $A$3,"(?i)Elf|Goblin|Halfling|Kobold|Ratfolk|Tengu"
+      ),6
+    )
+  )+(
+    iferror(
+      ifs(
+        regexmatch(
+          $A$5,"Barbarian"
+        ),12,regexmatch(
+          $A$5,"Champion|Fighter|Monk|Ranger|Swashbuckler"
+        ),10,regexmatch(
+          $A$5,"Alchemist|Bard|Cleric|Druid|Rogue|Investigator|Oracle"
+        ),8,regexmatch(
+          $A$5,"Sorcerer|Wizard|Witch"
+        ),6
+      )
+    )+$K$5+arrayformula(
+      if(
+        or(
+          regexmatch(
+            $I$51:$I$56,"Toughness"
+          )
+        ),1
+      )
+    )
+  )*$N$3
+)
