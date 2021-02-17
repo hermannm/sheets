@@ -1,0 +1,17 @@
+=arrayformula(
+  if(
+    and(
+      isblank(
+        $A$43:$A$77
+      )
+    ),,arrayformula(
+      if(
+        or(
+          regexmatch(
+            $I$51:$I$56,"Incredible Investiture"
+          )
+        ),12,10
+      )
+    )
+  )
+)
