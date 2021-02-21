@@ -11,9 +11,27 @@
         V3,$J$3:$L$8,3,false
       )
     )+iferror(
-      vlookup(
-        W3,$O$5:$P$8,2,false
-      ),0
+      if(
+        and(
+          isblank(
+            W3
+          ),regexmatch(
+            Q3,"Acrobatics|Arcana|Athletics|Crafting|Deception|Diplomacy|Intimidation|Medicine|Nature|Occultism|Performance|Religion|Society|Stealth|Survival|Thievery|Lore"
+          ),arrayformula(
+            or(
+              regexmatch(
+                $I$51:$I$56,"(?i)Untrained Improvisation"
+              )
+            )
+          )
+        ),if(
+          $O$3>=7,$O$3,floor(
+            $O$3/2
+          )
+        ),vlookup(
+          W3,$O$5:$P$8,2,false
+        )
+      )
     )+arrayformula(
       sum(
         iferror(
