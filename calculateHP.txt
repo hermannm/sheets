@@ -1,6 +1,6 @@
 =if(
   isblank(
-    $N$3
+    $O$3
   ),,iferror(
     ifs(
       regexmatch(
@@ -26,7 +26,7 @@
           $A$5,"(?i)Sorcerer|Wizard|Witch"
         ),6
       )
-    )+$K$5+arrayformula(
+    )+$L$5+arrayformula(
       if(
         or(
           regexmatch(
@@ -43,5 +43,5 @@
         ),1
       )
     )
-  )*$N$3
+  )*$O$3
 )

@@ -1,8 +1,8 @@
 //encumbered
 =if(
   isblank(
-    $K$3
-  ),,$K$3+arrayformula(
+    $L$3
+  ),,$L$3+arrayformula(
     if(
       or(
         regexmatch(
@@ -22,8 +22,8 @@
 //max
 =if(
   isblank(
-    $K$3
-  ),,$K$3+arrayformula(
+    $L$3
+  ),,$L$3+arrayformula(
     if(
       or(
         regexmatch(

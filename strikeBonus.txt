@@ -1,14 +1,14 @@
 =if(
   or(
     isblank(
-      $N$3
+      $O$3
     ),isblank(
       A14
     )
   ),,if(
     regexmatch(
       A14,"(?i)finesse|range|(?:\(|, )\d+'(?:,|\))"
-    ),$K$4,$K$3
+    ),$L$4,$L$3
   )+iferror(
     vlookup(
       iferror(
@@ -16,7 +16,7 @@
           sort(
             arrayformula(
               regexextract(
-                $Q$36:$Q$39,"(?:(?i)"&regexextract(
+                $R$36:$R$39,"(?:(?i)"&regexextract(
                   A14," ([A-Za-z ]+)(?:$| )"
                 )&" )(T|E|M|L)(?: |,|$)"
               )
@@ -33,7 +33,7 @@
             ),$T$35
           ),$T$32
         )
-      ),$N$5:$O$8,2,false
+      ),$O$5:$P$8,2,false
     )
   )+iferror(
     value(
