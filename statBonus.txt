@@ -1,13 +1,61 @@
 =if(
   isblank(
-    $N$3
+    $O$3
   ),,iferror(
-    vlookup(
-      U5,$I$3:$K$8,3,false
+    if(
+      and(
+        Q3="Armor Class",isnumber(
+          V3
+        )
+      ),V3,vlookup(
+        V3,$J$3:$L$8,3,false
+      )
     )+iferror(
       vlookup(
-        V5,$N$5:$O$8,2,false
+        W3,$O$5:$P$8,2,false
       ),0
-    )+W5
+    )+arrayformula(
+      sum(
+        iferror(
+          value(
+            regexextract(
+              {
+                $A$43:$A$77;$I$42:$I$48;$I$51:$I$56;$I$59:$I$70;$Q$42:$Q$56;$Q$59:$Q$70;$I$73:$I$79
+              },"(?:^| |[[:punct:]])(?:\+)([0-9])(?: )(?:"&Q3&if(
+                regexmatch(
+                  Q3,".* Lore"
+                ),,if(
+                  Q3="Spell",ifs(
+                    indirect(
+                      address(
+                        row()-1,column()
+                      )
+                    )="Atk","|SpellAttack|SpAtk",indirect(
+                      address(
+                        row()-1,column()
+                      )
+                    )="DC","|SpellDC|SpDC"
+                  ),switch(
+                    Q3,"Armor Class","|AC","Fortitude","|Fort|saves","Reflex","|Ref|saves","Will","|saves","Perception","|Prc","Intimidation","|Itm","Performance","|Prf","Class DC","|CDC","|"&left(
+                      Q3,3
+                    )
+                  )
+                )
+              )&")(?:$| |[[:punct:]])"
+            )
+          )
+        )
+      )
+    )+if(
+      or(
+        Q3="Armor Class",Q3="Class DC",and(
+          Q3="Spell",indirect(
+            address(
+              row()-1,column()
+            )
+          )="DC"
+        )
+      ),10
+    )
   )
 )
