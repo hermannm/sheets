@@ -5,40 +5,72 @@
     ),isblank(
       A14
     )
-  ),,if(
-    regexmatch(
-      A14,"(?i)finesse|range|(?:\(|, )\d+'(?:,|\))"
-    ),$L$4,$L$3
-  )+iferror(
-    vlookup(
-      iferror(
-        array_constrain(
-          sort(
-            arrayformula(
+  ),,arrayformula(
+    if(
+      regexmatch(
+        A14,"(?i)finesse|range|(?:\(|, )\d+'(?:,|\))"
+      ),$L$4,$L$3
+    )+iferror(
+      vlookup(
+        iferror(
+          array_constrain(
+            sort(
               regexextract(
-                $R$36:$R$39,"(?:(?i)"&regexextract(
-                  A14," ([A-Za-z ]+)(?:$| )"
+                $R$36:$R$39,"(?i:"&regexextract(
+                  A14," ([A-Za-z\.\-' ]+)(?:$| )"
                 )&" )(T|E|M|L)(?: |,|$)"
-              )
-            ),1,true
-          ),1,1
-        ),iferror(
-          ifs(
-            regexmatch(
-              A14,"(?i)Club|Dagger|Gauntlet|Light mace|Longspear|Mace|Morningstar|Sickle|Spear|Spiked gauntlet|Staff|Clan dagger|Katar|Blowgun|Crossbow|Dart|Hand crossbow|Heavy crossbow|Javelin|Sling"
-            ),$T$33,regexmatch(
-              A14,"(?i)Bastard sword|Battle axe|Bo staff|Falchion|Flail|Glaive|Greataxe|Greatclub|Greatpick|Greatsword|Guisarme|Halberd|Hatchet|Lance|Light hammer|Light pick|Longsword|Main-gauche|Maul|Pick|Ranseur|Rapier|Sap|Scimitar|Scythe|Shield bash|Shield boss|Shield spikes|Shortsword|Starknife|Trident|War flail|Warhammer|Whip|Dogslicer|Elven curve blade|Filcher's fork|Gnome hooked hammer|Horsechopper|Kama|Katana|Kukri|Nunchaku|Orc knuckle dagger|Sai|Spiked chain|Temple sword|Composite longbow|Composite shortbow|Longbow|Shortbow|Halfling sling staff|Shuriken"
-            ),$T$34,regexmatch(
-              A14,"(?i)Dwarven waraxe|Gnome flickmace|Orc necksplitter|Sawtooth saber"
-            ),$T$35
-          ),$T$32
+              ),1,true
+            ),1,1
+          ),iferror(
+            ifs(
+              regexmatch(
+                A14,"(?i)Club|Dagger|Gauntlet|Light mace|Longspear|Mace|Morningstar|Sickle|Spear|Spiked gauntlet|Staff|Clan dagger|Katar|Blowgun|Crossbow|Dart|Hand crossbow|Heavy crossbow|Javelin|Sling"
+              ),$T$33,regexmatch(
+                A14,"(?i)Bastard sword|Battle axe|Bo staff|Falchion|Flail|Glaive|Greataxe|Greatclub|Greatpick|Greatsword|Guisarme|Halberd|Hatchet|Lance|Light hammer|Light pick|Longsword|Main-gauche|Maul|Pick|Ranseur|Rapier|Sap|Scimitar|Scythe|Shield bash|Shield boss|Shield spikes|Shortsword|Starknife|Trident|War flail|Warhammer|Whip|Dogslicer|Elven curve blade|Filcher's fork|Gnome hooked hammer|Horsechopper|Kama|Katana|Kukri|Nunchaku|Orc knuckle dagger|Sai|Spiked chain|Temple sword|Composite longbow|Composite shortbow|Longbow|Shortbow|Halfling sling staff|Shuriken"
+              ),$T$34,regexmatch(
+                A14,"(?i)Dwarven waraxe|Gnome flickmace|Orc necksplitter|Sawtooth saber"
+              ),$T$35
+            ),$T$32
+          )
+        ),$O$5:$P$8,2,false
+      )
+    )+iferror(
+      value(
+        regexextract(
+          A14,"\(.*\+([0-9])(?:,|\))"
         )
-      ),$O$5:$P$8,2,false
-    )
-  )+iferror(
-    value(
-      regexextract(
-        A14,"\(.*\+([0-9])(?:,|\))"
+      )
+    )+sum(
+      iferror(
+        value(
+          regexextract(
+            $A$43:$A$77,"(?:^| |[[:punct:]])(?:\+)([0-9])(?i: [A-Za-z\.\-' ]*"&regexextract(
+              A14," ([A-Za-z\.\-' ]+)(?:$| )"
+            )&")(?:$| |[[:punct:]])"
+          )
+        )
+      )
+    )+sum(
+      iferror(
+        value(
+          regexextract(
+            {
+              $A$43:$A$77;$I$42:$I$48;$I$51:$I$56;$I$59:$I$70;$Q$42:$Q$56;$Q$59:$Q$70;$I$73:$I$79
+            },"(?:^| |[[:punct:]])(?:\+)([0-9])(?: Strikes)(?:$| |[[:punct:]])"
+          )
+        )
+      )
+    )+if(
+      regexmatch(
+        A14,"(?i)unarmed"
+      ),sum(
+        iferror(
+          value(
+            regexextract(
+              $A$43:$A$77,"(?:^| |[[:punct:]])(?:\+)([0-9])(?i: [A-Za-z\.\-' ]*Handwraps)(?:$| |[[:punct:]])"
+            )
+          )
+        )
       )
     )
   )
