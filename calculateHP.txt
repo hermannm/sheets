@@ -4,13 +4,13 @@
   ),,iferror(
     ifs(
       regexmatch(
-        $A$3,"(?i)Hold-Scarred Orc"
+        $A$3,"(?: )((?i)Hold-Scarred Orc)"
       ),12,regexmatch(
-        $A$3,"(?i)Dwarf|Unbreakable Goblin|Orc"
+        $A$3,"(?: )((?i)Dwarf|Unbreakable Goblin|Orc)"
       ),10,regexmatch(
-        $A$3,"(?i)Gnome|Human|Half-elf|Half-orc|Catfolk"
+        $A$3,"(?: )((?i)Gnome|Human|Half-elf|Half-orc|Catfolk)"
       ),8,regexmatch(
-        $A$3,"(?i)Elf|Goblin|Halfling|Kobold|Ratfolk|Tengu"
+        $A$3,"(?: )((?i)Elf|Goblin|Halfling|Kobold|Ratfolk|Tengu)"
       ),6
     )
   )+(
