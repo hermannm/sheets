@@ -120,6 +120,32 @@
             )
           )
         )
+      )-if(
+        or(
+          Q3="Stealth",Q3="Thievery",and(
+            not(
+              or(
+                regexmatch(
+                  {
+                    $A$43:$A$77;$I$42:$I$48;$I$51:$I$56;$I$59:$I$70;$Q$42:$Q$56;$Q$59:$Q$70;$I$73:$I$79
+                  },"(?:^| |[[:punct:]])(?:\-[0-9] )(?i:Armor Check Penalty|ACP)(?: |[[:punct:]])(?:.*)(?: |[[:punct:]])((?i)flexible|flex)(?:$| |[[:punct:]])"
+                )
+              )
+            ),or(
+              Q3="Acrobatics",Q3="Athletics"
+            )
+          )
+        ),sum(
+          iferror(
+            value(
+              regexextract(
+                {
+                  $A$43:$A$77;$I$42:$I$48;$I$51:$I$56;$I$59:$I$70;$Q$42:$Q$56;$Q$59:$Q$70;$I$73:$I$79
+                },"(?:^| |[[:punct:]])(?:\-)([0-9])(?: )(?i:Armor Check Penalty|ACP)(?:$| |[[:punct:]])"
+              )
+            )
+          )
+        )
       )
     )
   )
